@@ -43,7 +43,6 @@ const items = [
 
 const chosenName = document.getElementById("chosenName");
 const chosenNumber = document.getElementById("chosenNumber");
-const testResults = document.getElementById("testResults");
 const testButton = document.getElementById("testButton");
 const resetButton = document.getElementById("resetButton");
 let selectedNameIndex;
@@ -51,13 +50,16 @@ let selectedNumberIndex;
 let selectedNameElement;
 let selectedNumberElement;
 
-function compareRandom() {
-    return Math.random() - 0.5;
-}
+// function compareRandom() {
+//     return Math.random() - 0.5;
+// }
 
 const namesAndNumbersList = document.querySelector(".namesAndNumbers");
 
-items.sort(compareRandom);
+const nameLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+const numberNumbers = ['1', '2', '3', '4', '5', '6', '7'];
+
+// items.sort(compareRandom);
 items.map(function(item, index) {
     
     const name = document.createElement("li");
@@ -80,17 +82,18 @@ items.map(function(item, index) {
         chosenName.classList.add("chosenNameDisplayOn", `${item.id}`, "plenty");
         selectedNameElement.classList.add("nameDisplayOff");
         selectedNameElement.classList.remove("nameDisplayOn");
-        console.log(selectedNameElement);
+
     });
     name.setAttribute("data-index", index);
     namesAndNumbersList.appendChild(name);
 
     const number = document.createElement("li");
+    const numberImage = document.createElement("img");
     number.classList.add("number", "numberDisplayOn");
-    number.textContent = item.number;
     number.addEventListener("click", function(event) {
         if (chosenNumber.classList.contains("chosenNumberDisplayOn")) {
             chosenNumber.textContent = null;
+            
             chosenNumber.classList.add("chosenNumberDisplayOff");
             chosenNumber.classList.remove("chosenNumberDisplayOn");
             selectedNumberElement.classList.remove("numberDisplayOff", "filteredNumber");
@@ -99,6 +102,7 @@ items.map(function(item, index) {
         selectedNumberElement = event.currentTarget;
         selectedNumberIndex = selectedNumberElement.getAttribute("data-index");
         chosenNumber.textContent = item.number;
+        chosenNumber.setAttribute("src", `assets/${item.number}.jpg`);
         chosenNumber.setAttribute("data-index", selectedNumberIndex);
         chosenNumber.classList.add("chosenNumberDisplayOn", `${item.id}`);
         chosenNumber.classList.remove("chosenNumberDisplayOff");
@@ -108,7 +112,32 @@ items.map(function(item, index) {
     });
     number.setAttribute("data-index", index);
     namesAndNumbersList.appendChild(number);
+    number.appendChild(numberImage);
+    numberImage.setAttribute("src", `assets/${item.number}.jpg`);
+    numberImage.setAttribute("class", "numberImage");
+    
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key.toUpperCase() === nameLetters[index]) {
+            
+            name.click();
+        }
+        if (event.key.toUpperCase() === numberNumbers[index]) {
+
+            number.click();
+        }
+        if (event.key.toUpperCase() === 'ENTER') {
+
+            testButton.click();
+        }
+        if (event.key === 'Delete' || event.key === 'Backspace') {
+
+            resetButton.click();
+        }
+    });
 });
+
 
 testButton.addEventListener("click", function() {
     doesItMatch();
@@ -139,8 +168,6 @@ function doesItMatch () {
 
     const selectedNameIndex = parseInt(chosenName.getAttribute("data-index"));
     const selectedNumberIndex = parseInt(chosenNumber.getAttribute("data-index"));
-    console.log (selectedNameIndex);
-    console.log (selectedNumberIndex);
 
     const chosenNameText = chosenName.textContent;
     const chosenNumberText = chosenNumber.textContent;
@@ -168,7 +195,6 @@ function doesItMatch () {
             chosenNumber.classList.add("chosenNumberDisplayOff");
             chosenNumber.classList.remove("chosenNumberDisplayOn");
 
-            testResults.textContent = 'BRAVO!';
             chosenNumber.textContent = null;
             chosenName.textContent = null;
             
@@ -187,7 +213,6 @@ function doesItMatch () {
             selectedNumberElement.classList.remove("numberDisplayOff");
             selectedNumberElement.classList.add("numberDisplayOn");
             
-            testResults.textContent = 'PERDU!';
             chosenNumber.textContent = null;
             chosenName.textContent = null;
         }
