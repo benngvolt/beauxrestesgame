@@ -1,7 +1,7 @@
 
 
 @font-face {
-    font-family: 'trattetello'; /* Nom de la police */
+    font-family: 'trattatello'; /* Nom de la police */
     src: url('assets/Trattatello.ttf') format('truetype'); /* Chemin relatif vers le fichier .ttf */
     /* Vous pouvez également spécifier d'autres variantes, comme font-weight et font-style si nécessaire */
 }
@@ -10,10 +10,19 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     justify-content: space-between;
     margin: 0;
     background-color: rgb(0, 0, 0);
+}
+
+.namesAndNumbers {
+    margin: auto;
+    width: 99%;
+    column-gap: 20%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
 
 #game {
@@ -27,26 +36,6 @@ body {
     align-items: center;
 }
 
-.gameContainer {
-    height: 460px;
-}
-
-#chosenName {
-    text-transform: uppercase;
-    text-align: center;
-    display: flex;
-    width: 180px;
-    height: 180px;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    padding: 0 10px;
-    box-sizing: border-box;
-    font-family: 'trattetello';
-    font-size: 30px;
-    color: rgb(0, 0, 0);
-}
-
 .plenty {
     color: rgba(255, 255, 255, 1)
 }
@@ -55,40 +44,46 @@ body {
     color: rgba(255, 255, 255, 0)
 }
 
+.numberText {
+    display: none;
+}
 
-#chosenNumber {
-    display: flex;
-    color: white;
-    font-size: 40px;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 180px;
-    height: 180px;
+.validatedNumber, .validatedName {
+    filter: brightness(0.2) saturate(0);
+}
+.validatedNumber {
+    z-index: 0;
+}
+.validatedName {
+    margin-right: 20px;
+}
+
+.selectedNameDisplayOn {
+    animation: appear 0.2s ease forwards;
     box-sizing: border-box;
-    background-color: rgb(0, 0, 0);  
 }
 
-.nameDisplayOn, .numberDisplayOn {
-    animation: appear 0.2s ease forwards;
-    opacity: 1;
-}
-
-.chosenNameDisplayOn, .chosenNumberDisplayOn {
-    animation: appear 0.2s ease forwards;
-    opacity: 1;
-}
-
-.chosenNameDisplayOff, .chosenNumberDisplayOff, .nameDisplayOff, .numberDisplayOff {
+.selectedNameDisplayOff {
     animation: disappear 0.2s ease forwards;
-    opacity: 0;
+    box-sizing: border-box;
 }
+
+.selectedNumberDisplayOn {
+    filter: brightness(10);
+    z-index: 3;
+}
+
+.selectedNumberDisplayOff {
+    opacity: 1;
+    z-index: 0;
+}
+
 
 .filteredName, .filteredNumber {
     filter: saturate(0) brightness(0.2);
 }
 
-.namesAndNumbers {
+.numbersGrid {
     width: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -96,6 +91,12 @@ body {
     margin: auto 0;
     list-style: none;
     font-size: 40px;
+}
+
+.namesList {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
 }
 
 .number {
@@ -123,84 +124,120 @@ body {
 .name {
     text-transform: uppercase;
     display: flex;
-    width: 180px;
-    height: 180px;
+    width: 600px;
+    height: 80px;
+    margin: 20px 0;
+    padding-left: 30px;
     box-sizing: border-box;
     font-size: 40px;
     cursor: pointer;
+    font-family: 'trattatello';
+}
+
+.ghosts {
+    width: 180px;
+    height: 180px;
     border: 10px solid white;
     outline: 10px solid white;
+    box-sizing: border-box;
+    color: white;
+    z-index: 1;
 }
 
-.namesAndNumbers .ghost1 {
-    grid-column: 1;
-    grid-row: 1;
-    opacity: 0;
+.namesList .name:nth-child(1){
+    order: 2;
+}
+.namesList .name:nth-child(2){
+    order: 1;
+}
+.namesList .name:nth-child(3){
+    order: 7;
+}
+.namesList .name:nth-child(4){
+    order: 3;
+}
+.namesList .name:nth-child(5){
+    order: 6;
+}
+.namesList .name:nth-child(6){
+    order: 4;
+}
+.namesList .name:nth-child(7){
+    order: 5;
 }
 
-.namesAndNumbers .mains {
-    grid-column: 1;
-    grid-row: 2;
-}
-.namesAndNumbers .simple {
+.numbersGrid .ghost1 {
     grid-column: 2;
     grid-row: 1;
+    opacity: 1;
 }
-.namesAndNumbers .number:nth-child(3){
+
+.numbersGrid .ghost2 {
+    grid-column: 4;
+    grid-row: 1;
+    opacity: 1;
+}
+
+.numbersGrid .ghost3 {
+    grid-column: 1;
+    grid-row: 2;
+    opacity: 1;
+}
+
+.numbersGrid .ghost4 {
+    grid-column: 3;
+    grid-row: 2;
+    opacity: 1;
+}
+
+.numbersGrid .ghost5 {
+    grid-column: 2;
+    grid-row: 3;
+    opacity: 1;
+}
+
+.numbersGrid .ghost6 {
+    grid-column: 4;
+    grid-row: 3;
+    opacity: 1;
+}
+
+.numbersGrid .ghost7 {
+    grid-column: 3;
+    grid-row: 4;
+    opacity: 1;
+}
+
+
+.numbersGrid .number:nth-child(8){
     grid-column: 3;
     grid-row: 1;
 }
-.namesAndNumbers .trois {
-    grid-column: 3;
-    grid-row: 2;
-}
-.namesAndNumbers .ruade{
-    grid-column: 4;
-    grid-row: 1;
-}
-.namesAndNumbers .bruit {
-    grid-column: 4;
-    grid-row: 3;
-}
-.namesAndNumbers .menace {
-    grid-column: 2;
-    grid-row: 3;
-}
-.namesAndNumbers .double {
-    grid-column: 3;
-    grid-row: 4;
-}
-
-.namesAndNumbers .number:nth-child(6){
+.numbersGrid .number:nth-child(9){
     grid-column: 2;
     grid-row: 2;
 }
-.namesAndNumbers .number:nth-child(8){
+.numbersGrid .number:nth-child(10){
     grid-column: 4;
     grid-row: 2;
 }
-.namesAndNumbers .number:nth-child(9){
+.numbersGrid .number:nth-child(11){
     grid-column: 1;
     grid-row: 3;
 }
-.namesAndNumbers .number:nth-child(11){
+.numbersGrid .number:nth-child(12){
     grid-column: 3;
     grid-row: 3;
 }
-.namesAndNumbers .ghost2 {
-    grid-column: 1;
-    grid-row: 4;
-    opacity: 0;
-}
-.namesAndNumbers .number:nth-child(14){
+.numbersGrid .number:nth-child(13){
     grid-column: 2;
     grid-row: 4;
 }
-
-.namesAndNumbers .number:nth-child(16){
+.numbersGrid .number:nth-child(14){
     grid-column: 4;
     grid-row: 4;
 }
+
 
 .numberDisplayOn, .nameDisplayOn {
     opacity: 1;
@@ -240,48 +277,48 @@ body {
 }
 
 
-.mains {
+.namesList .mains {
     background-color: rgb(255, 65, 65)
 }
 
-.double {
+.namesList .double {
     background-color: rgb(47, 175, 255)
 }
 
-.menace {
+.namesList .menace {
     background-color: rgb(255, 206, 47)
 }
 
-.ruade {
+.namesList .ruade {
     background-color: rgb(11, 48, 255)
 }
 
-.bruit {
+.namesList .bruit {
     background-color: rgb(131, 74, 0)
 }
 
-.trois {
+.namesList .trois {
     background-color: rgb(69, 152, 0)
 }
 
-.simple {
+.namesList .simple {
     background-color: rgb(174, 0, 227)
 }
 
 @keyframes appear {
     0% {
-        height: 0
+        margin-left: 0;
     }
     100% {
-        height: 180px;
+        margin-left: 80px;
     }
 }
 
 @keyframes disappear {
     0% {
-        height: 180px;
+        margin-left: 80px;
     }
     100% {
-        height: 0;
+        margin-left: 0;
     }
 }
