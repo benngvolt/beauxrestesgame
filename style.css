@@ -223,31 +223,31 @@ body {
 }
 
 
-.numbersGrid .number:nth-child(8){
+.numbersGrid .number:nth-child(10){
     grid-column: 3;
     grid-row: 1;
 }
-.numbersGrid .number:nth-child(9){
+.numbersGrid .number:nth-child(11){
     grid-column: 2;
     grid-row: 2;
 }
-.numbersGrid .number:nth-child(10){
+.numbersGrid .number:nth-child(12){
     grid-column: 4;
     grid-row: 2;
 }
-.numbersGrid .number:nth-child(11){
+.numbersGrid .number:nth-child(13){
     grid-column: 1;
     grid-row: 3;
 }
-.numbersGrid .number:nth-child(12){
+.numbersGrid .number:nth-child(14){
     grid-column: 3;
     grid-row: 3;
 }
-.numbersGrid .number:nth-child(13){
+.numbersGrid .number:nth-child(15){
     grid-column: 2;
     grid-row: 4;
 }
-.numbersGrid .number:nth-child(14){
+.numbersGrid .number:nth-child(16){
     grid-column: 4;
     grid-row: 4;
 }
