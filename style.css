@@ -17,12 +17,12 @@ body {
 }
 
 .namesAndNumbers {
-    margin: auto;
-    width: 99%;
+    margin: 1%;
+    width: 97%;
     column-gap: 20%;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 #game {
@@ -94,7 +94,8 @@ body {
 }
 
 .namesList {
-    width: 600px;
+    width: 500px;
+    
     display: flex;
     flex-direction: column;
 }
@@ -125,7 +126,7 @@ body {
     text-transform: uppercase;
     display: flex;
     width: 600px;
-    height: 80px;
+    height: 70px;
     margin: 20px 0;
     padding-left: 30px;
     box-sizing: border-box;
@@ -257,6 +258,7 @@ body {
 }
 
 #testButton, #resetButton {
+    opacity: 0;
     border-radius: 50%;
     border: solid 2px white;
     width: 80px;
@@ -302,7 +304,7 @@ body {
 }
 
 .namesList .simple {
-    background-color: rgb(174, 0, 227)
+    background-color: rgb(155, 20, 155)
 }
 
 @keyframes appear {
