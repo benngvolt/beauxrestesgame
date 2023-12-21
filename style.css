@@ -210,6 +210,18 @@ body {
     opacity: 1;
 }
 
+.numbersGrid .ghost8 {
+    grid-column: 1;
+    grid-row: 1;
+    opacity: 1;
+}
+
+.numbersGrid .ghost9 {
+    grid-column: 1;
+    grid-row: 4;
+    opacity: 1;
+}
+
 
 .numbersGrid .number:nth-child(8){
     grid-column: 3;
