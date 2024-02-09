@@ -64,14 +64,16 @@ const numberNumbers = ['1', '2', '3', '4', '5', '6', '7'];
 items.map(function(item, index) {
     
     const name = document.createElement("li");
-    name.classList.add("name", `${item.id}`, "selectedNameDisplayOff", "transparent");
+    name.classList.add("name", `${item.id}`, "selectedNameDisplayOff"
+    // , "transparent"
+    );
     name.classList.remove("selectedNameDisplayOn", "plenty");
     name.textContent = item.name;
     
     name.addEventListener("click", function(event) {
         const existingSelectedNameElement = document.querySelector('.selectedNameDisplayOn');
         if (existingSelectedNameElement) { 
-            existingSelectedNameElement.textContent = null;
+            // existingSelectedNameElement.textContent = null;
             existingSelectedNameElement.classList.add("selectedNameDisplayOff");
             existingSelectedNameElement.classList.remove("selectedNameDisplayOn");
         };
@@ -214,9 +216,8 @@ function doesItMatch () {
             selectedNumber.classList.add("validatedNumber");
 
             
-            selectedName.textContent = null;
+            // selectedName.textContent = null;
             
-
         } else {
 
             console.log("oups");
@@ -230,7 +231,7 @@ function doesItMatch () {
     
             
             
-            selectedName.textContent = null;
+            // selectedName.textContent = null;
         }
     }
 };
