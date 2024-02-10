@@ -223,7 +223,7 @@ function doesItMatch () {
             console.log("oups");
 
             selectedName.classList.add("selectedNameDisplayOff");
-            selectedName.classList.remove("selectedNameDisplayOn");
+            selectedName.classList.remove("selectedNameDisplayOn", "plenty");
 
             
             selectedNumber.classList.add("selectedNumberDisplayOff");
