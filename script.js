@@ -75,7 +75,7 @@ items.map(function(item, index) {
         if (existingSelectedNameElement) { 
             // existingSelectedNameElement.textContent = null;
             existingSelectedNameElement.classList.add("selectedNameDisplayOff");
-            existingSelectedNameElement.classList.remove("selectedNameDisplayOn");
+            existingSelectedNameElement.classList.remove("selectedNameDisplayOn", "plenty");
         };
 
         selectedNameIndex = name.getAttribute("data-index");
